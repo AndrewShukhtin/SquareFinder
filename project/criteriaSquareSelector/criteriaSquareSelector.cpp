@@ -31,7 +31,7 @@ std::vector<SquareWithCircles> CriteriaSquareSelector::_findSquares(std::vector<
     std::vector<SquareWithCircles> squaresWithCircles;
     for (auto& square : squares) {
         const auto [origin, searchDomain] = getSearchDomain(_image, square.getVertexCoords());
-        const auto maxRadius = square.getSideLength() * 0.45;
+        const auto maxRadius = square.getSideLength() * 0.5;
 
         std::vector<cv::Vec3f> rawCirclesData;
         cv::HoughCircles(searchDomain,
@@ -127,7 +127,8 @@ void SquaresDetecter::_preprocessInitialImage() {
         double cosine = _angleCosine(quadrangle[(i - 1) % 4],
                                      quadrangle[(i - 2) % 4],
                                      quadrangle[(i + 1) % 4]);
-        if (cosine > std::cos(pi / 180 * MIN_ANGLES_DEGREE) && cosine < std::cos(pi / 180 * MAX_ANGLES_DEGREE)) {
+        if (cosine > std::cos(pi / 180 * MIN_ANGLES_DEGREE)
+         && cosine < std::cos(pi / 180 * MAX_ANGLES_DEGREE)) {
             return false;
         }
     }

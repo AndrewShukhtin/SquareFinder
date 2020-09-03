@@ -7,7 +7,7 @@
 
 void highlightSquare(cv::Mat& image, const std::vector<cv::Point>& contour) {
     for (size_t i = 1; i <= contour.size(); ++i) {
-        cv::line(image, contour[i - 1], contour[i % contour.size()],cv::viz::Color::red(), 5, cv::LINE_AA);
+        cv::line(image, contour[i - 1], contour[i % contour.size()],cv::viz::Color::red(), 10, cv::LINE_AA);
     }
 }
 
@@ -15,11 +15,11 @@ void drawToImage(cv::Mat& image, const std::vector<SquareWithCircles>& squaresWi
     for (const auto& squareWithCircles : squaresWithCircles) {
     // NOTE: Sorry for 'Kebab' style 
     highlightSquare(image, squareWithCircles.first.getVertexCoords());
-    cv::circle(image, squareWithCircles.first.getCenter(), 1, cv::viz::Color::red(), 6, cv::LINE_AA);
+    cv::circle(image, squareWithCircles.first.getCenter(), 1, cv::viz::Color::red(), 5, cv::LINE_AA);
         for (const auto& circle : squareWithCircles.second) {
             cv::Point center = circle.getCenter();
-            cv::circle(image, center, 1, cv::viz::Color::blue(), 4, cv::LINE_AA);
-            cv::circle(image, center, circle.getRadius(), cv::viz::Color::blue(), 4, cv::LINE_AA);
+            cv::circle(image, center, 1, cv::viz::Color::blue(), 8, cv::LINE_AA);
+            cv::circle(image, center, circle.getRadius(), cv::viz::Color::blue(), 8, cv::LINE_AA);
         }
     }
 }
