@@ -14,6 +14,7 @@ const cv::Point& Square::getCenter() {
     cv::Moments m = cv::moments(_contour, true);
     _center = cv::Point{static_cast<int>(m.m10/m.m00), static_cast<int>(m.m01/m.m00)};
 
+    _isCenterComputed = true;
     return _center;
 }
 
@@ -29,5 +30,11 @@ const double& Square::getSideLength() {
     }
 
     _sideLength = std::accumulate(lenghts.begin(), lenghts.end(), 0.0) / 4.0;
+
+    _isLengthComputed = true;
     return _sideLength;
+}
+
+const Contour& Square::getVertexCoords() const {
+    return _contour;
 }

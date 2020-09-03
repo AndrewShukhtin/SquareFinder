@@ -5,12 +5,14 @@
 
 class Square {
 public:
-    Square(const Contour& shape);
-    Square(Contour&& shape);
+    Square(const Contour& _ontour);
+    Square(Contour&& contour);
 
     const cv::Point& getCenter();
 
     const double& getSideLength();
+
+    const Contour& getVertexCoords() const;
 
 private:
     Contour _contour;
