@@ -31,7 +31,7 @@ std::vector<SquareWithCircles> CriteriaSquareSelector::_findSquares(std::vector<
     std::vector<SquareWithCircles> squaresWithCircles;
     for (auto& square : squares) {
         const auto [origin, searchDomain] = getSearchDomain(_image, square.getVertexCoords());
-        const auto maxRadius = square.getSideLength();
+        const auto maxRadius = square.getSideLength() * 0.45;
 
         std::vector<cv::Vec3f> rawCirclesData;
         cv::HoughCircles(searchDomain,
@@ -50,6 +50,7 @@ std::vector<SquareWithCircles> CriteriaSquareSelector::_findSquares(std::vector<
                 rawCircleData[1] += origin.y;
                 circles.emplace_back(rawCircleData);
             }
+            Circle circle(std::move(circles.front()));
 
             squaresWithCircles.emplace_back(std::move(square), std::move(circles));
         }

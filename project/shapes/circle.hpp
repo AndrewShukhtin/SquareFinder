@@ -7,6 +7,12 @@ class Circle {
 public:
     Circle(const cv::Vec3f& rawCircleData);
 
+    Circle(const Circle& circle) = default;
+    Circle(Circle&& circle) = default;
+
+    Circle& operator=(const Circle& square) = default;
+    Circle& operator=(Circle&& square) = default;
+
     const cv::Point& getCenter() const;
 
     const int getRadius() const;

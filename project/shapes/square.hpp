@@ -8,18 +8,25 @@ public:
     Square(const Contour& _ontour);
     Square(Contour&& contour);
 
-    const cv::Point& getCenter();
+    Square(const Square& square) = default;
+    Square(Square&& square) = default;
 
-    const double& getSideLength();
+    Square& operator=(const Square& square) = default;
+    Square& operator=(Square&& square) = default;
+
+    const cv::Point& getCenter() const;
+
+    const double& getSideLength() const;
 
     const Contour& getVertexCoords() const;
+
+private:
+    void _initializeParams();
 
 private:
     Contour _contour;
     cv::Point _center;
     double _sideLength;
-    bool _isCenterComputed = false;
-    bool _isLengthComputed = false;
 };
 
 #endif  // PROJECT_SHAPES_SQUARE_HPP_

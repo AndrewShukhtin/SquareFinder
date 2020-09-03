@@ -4,11 +4,8 @@
 #include "square.hpp"
 #include "circle.hpp"
 
-struct SquareWithCircles {
-    SquareWithCircles(Square &&square, Circle&& circles) : square{square}, circles{circles} {}
-    Square square;
-    std::vector<Circle> circles;
-};
+using SquareWithCircles  = std::pair<Square, std::vector<Circle>>;
+
 
 class SquaresDetecter {
 public:
